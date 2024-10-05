@@ -1,15 +1,21 @@
-import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 import NavigationBar from "./components/Navigation";
 
+
 export default function App() {
+  
+
+  // if (!isLoaded || !isSignedIn) {
+  //   return <div>Please log in</div>;
+  // }
   return (
     <header>
-      <SignedOut>
+      {/* <SignedOut>
         <SignInButton />
       </SignedOut>
       <SignedIn>
-        <NavigationBar/>
-      </SignedIn>
+        <NavigationBar isSignedIn={isSignedIn}/>
+      </SignedIn> */}
+      <NavigationBar/>
     </header>
   );
 }
