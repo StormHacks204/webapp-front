@@ -1,4 +1,5 @@
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
+import NavigationBar from "./components/Navigation";
 
 export default function App() {
   return (
@@ -7,7 +8,7 @@ export default function App() {
         <SignInButton />
       </SignedOut>
       <SignedIn>
-        <UserButton />
+        <NavigationBar/>
       </SignedIn>
     </header>
   );
