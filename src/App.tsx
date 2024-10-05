@@ -1,7 +1,7 @@
-import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 import NavigationBar from "./components/Navigation";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreatePost from "./pages/CreatePost";
+import Home from "./pages/Home";
 
 export default function App() {
   
@@ -14,6 +14,7 @@ export default function App() {
       <BrowserRouter>
       <NavigationBar/>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/createpost" element={<CreatePost />} />
           
           </Routes>
