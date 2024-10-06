@@ -30,7 +30,10 @@ type PostProps = {
     title: string;
 };
 
-const PostList = () => {
+const PostList = ({latitude, longitude}:{
+    latitude: number,
+    longitude: number
+}) => {
     const {getToken} = useAuth();
     const [posts, setPosts] = useState<PostProps[]>([]);
     const [loading, setLoading] = useState(true);
@@ -67,7 +70,9 @@ const PostList = () => {
         const fetchPosts = async () => {
             const token = await getToken();
             try {
-                const response = await fetch("http://localhost:5001/posts", {headers: {
+                const x = latitude;
+                const y = longitude; 
+                const response = await fetch(`http://localhost:5001/posts?x=${x}&y=${y}`, {headers: {
                                     Authorization: `${token}`}});
                 const data = await response.json();
                 console.log(data);
@@ -80,7 +85,7 @@ const PostList = () => {
 
         };
         fetchPosts();
-    }, [posts, getToken]);
+    }, []);
 
     if (loading) {
         return <p>Loading...</p>;

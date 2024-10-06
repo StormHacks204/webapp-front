@@ -50,6 +50,7 @@ const Home = () => {
           <div>
             <p>Latitude: {location.latitude}</p>
             <p>Longitude: {location.longitude}</p>
+            <PostList latitude={location.latitude} longitude={location.longitude}/>
           </div>
         ) : (
           <p>{error || "Click the button to get the location."}</p>
@@ -57,7 +58,7 @@ const Home = () => {
       </div>
       <div className="feed">
         <h1>Posts are here</h1>
-        <PostList />
+        
       </div>
     </div>
   );
