@@ -79,6 +79,7 @@ const PostList = ({latitude, longitude}:{
             try {
                 const x = latitude;
                 const y = longitude; 
+                console.log(x, y);
                 const response = await fetch(`http://localhost:5001/posts?x=${x}&y=${y}`, {headers: {
                                     Authorization: `${token}`}});
                 const data = await response.json();
@@ -93,7 +94,7 @@ const PostList = ({latitude, longitude}:{
 
         };
         fetchPosts();
-    }, []);
+    }, [latitude, longitude, getToken]);
 
     if (loading) {
         return <p>Loading...</p>;
