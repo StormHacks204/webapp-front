@@ -6,9 +6,10 @@ type PostProps = {
     image: any;
     caption: string;
     title: string;
+    date: string;
 };
 
-const Post: React.FC<PostProps> = ({ username, profilePicture, image, caption, title }) => {
+const Post: React.FC<PostProps> = ({ username, profilePicture, image, caption, title, date }) => {
     return(
         <div className="flex justify-center my-10">
             <div className="border-1 p-4 rounded-lg shadow-md w-[600px] w-[90%] max-w-[600px] bg-white">
@@ -23,11 +24,13 @@ const Post: React.FC<PostProps> = ({ username, profilePicture, image, caption, t
                             <img className="w-full mt-[16px] mr-[12px]" src={image} alt="Content" />
                             <h3 className="my-[8px] text-sm font-semibold">{title}</h3>
                             <p className="text-xs text-[#555]">{caption}</p>
+                            <p className="text-xs text-[#888]">{date.split('T')[0]}</p>
                         </>
                     ) : (
                         <>
                             <h3 className="my-[8px] text-sm font-semibold">{title}</h3>
                             <p className="text-xs text-[#555]">{caption}</p>
+                            <p className="text-xs text-[#888]">{date.split('T')[0]}</p>
                         </>
                     )}
                 </div>

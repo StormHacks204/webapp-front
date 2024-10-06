@@ -3,29 +3,30 @@ import { useState, useEffect } from "react";
 import Post from "./post";
 import { useAuth } from "@clerk/clerk-react";
 
-const exampleData = [
-    {
-        username: "test",
-        profilePicture: "https://via.placeholder.com/150",
-        image: null,
-        caption: "random caption",
-        title: "Random Title",
-    },
-    {
-        username: "username",
-        profilePicture: "https://via.placeholder.com/150",
-        image: "https://via.placeholder.com/150",
-        caption: "caption1",
-        title: "title1",
-    },
-    {
-        username: "johndoe",
-        profilePicture: "https://static.vecteezy.com/system/resources/previews/009/273/280/non_2x/concept-of-loneliness-and-disappointment-in-love-sad-man-sitting-element-of-the-picture-is-decorated-by-nasa-free-photo.jpg",
-        image: "https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg",
-        caption: "caption2",
-        title: "title2",
-    }
-];
+// const exampleData = [
+//     {
+//         username: "test",
+//         profilePicture: "https://via.placeholder.com/150",
+//         image: null,
+//         caption: "random caption",
+//         title: "Random Title",
+//     },
+//     {
+//         username: "username",
+//         profilePicture: "https://via.placeholder.com/150",
+//         image: "https://via.placeholder.com/150",
+//         caption: "caption1",
+//         title: "title1",
+//     },
+//     {
+//         username: "johndoe",
+//         profilePicture: "https://static.vecteezy.com/system/resources/previews/009/273/280/non_2x/concept-of-loneliness-and-disappointment-in-love-sad-man-sitting-element-of-the-picture-is-decorated-by-nasa-free-photo.jpg",
+//         image: "https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg",
+//         caption: "caption2",
+//         title: "title2",
+
+//     }
+// ];
 // fetch function
 
 
@@ -33,8 +34,9 @@ type PostProps = {
     username: string;
     profilePicture: string;
     image: any;
-    caption: string;
+    text: string;
     title: string;
+    date: string;
 };
 
 const PostList = ({latitude, longitude}:{
@@ -111,8 +113,9 @@ const PostList = ({latitude, longitude}:{
                     username={post.username}
                     profilePicture={post.profilePicture}
                     image={post.image}
-                    caption={post.caption}
+                    caption={post.text}
                     title={post.title}
+                    date={post.date}
                 /> 
             ))}
         </div>
