@@ -22,8 +22,14 @@ const exampleData = [
 const fetchPostsData = async () => {
     try {
         // const response = await fetch("http://localhost:5001/posts");
-        // if (!response.ok) {
-        //     throw new Error("Network response was not ok");
+        // if (response.status === 404) {
+        //     window.alert("No Posts Found");
+        //     throw new Error("404 Not Found");
+        // }
+        // if (response.status === 500) {
+        //     window.alert("Something went wrong");
+        //     throw new Error("500 Internal Server Error");
+        //
         // }
         // const data = await response.json();
         // const data = response.json();
