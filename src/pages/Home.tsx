@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PostList from "../components/postList";
 
 const Home = () => {
     const [location, setLocation] = useState({ latitude: 0 , longitude: 0}
@@ -42,16 +43,22 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Get User Location</h1>
+      <div>
+        <h1>Get User Location</h1>
 
-      {location.latitude && location.longitude ? (
-        <div>
-          <p>Latitude: {location.latitude}</p>
-          <p>Longitude: {location.longitude}</p>
-        </div>
-      ) : (
-        <p>{error || "Click the button to get the location."}</p>
-      )}
+        {location.latitude && location.longitude ? (
+          <div>
+            <p>Latitude: {location.latitude}</p>
+            <p>Longitude: {location.longitude}</p>
+          </div>
+        ) : (
+          <p>{error || "Click the button to get the location."}</p>
+        )}
+      </div>
+      <div className="feed">
+        <h1>Posts</h1>
+        <PostList />
+      </div>
     </div>
   );
 }

@@ -21,13 +21,14 @@ const exampleData = [
 // fetch function
 const fetchPostsData = async () => {
     try {
-        // const response = await fetch("");
+        // const response = await fetch("http://localhost:5001/posts");
         // if (!response.ok) {
         //     throw new Error("Network response was not ok");
         // }
         // const data = await response.json();
         // const data = response.json();
         const data = exampleData;
+        console.log(data);
         return data;
     } catch (error) {
         console.error("There was a problem with your fetch operation: ", error);
@@ -46,14 +47,15 @@ type PostProps = {
 const PostList = () => {
     const [posts, setPosts] = useState<PostProps[]>([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("error");
+    const [error, setError] = useState<string | undefined>(undefined);
 
     useEffect(() => {
         const fetchPosts = async () => {
             try {
                 const data = await fetchPostsData();
+                console.log(data);
                 setPosts(data);
-
+                console.log(posts);
             } catch (error: any) {
                 setError(error.message);
             } finally {
@@ -62,7 +64,7 @@ const PostList = () => {
 
         };
         fetchPosts();
-    }, []);
+    }, [posts]);
 
     if (loading) {
         return <p>Loading...</p>;
