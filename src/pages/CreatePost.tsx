@@ -87,6 +87,13 @@ const CreatePost: React.FC = () => {
         Authorization: `${token}`
       }
     })
+
+    if (response.ok) {
+      console.log("Post created successfully");
+    } else {
+      window.alert("Failed to create post");
+      console.error("Failed to create post");
+    }
   };
 
   return (
