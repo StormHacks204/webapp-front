@@ -3,13 +3,13 @@
 type PostProps = {
     username: string;
     profilePicture: string;
-    image: any;
+    imageId: string;
     caption: string;
     title: string;
     date: string;
 };
 
-const Post: React.FC<PostProps> = ({ username, profilePicture, image, caption, title, date }) => {
+const Post: React.FC<PostProps> = ({ username, profilePicture, imageId, caption, title, date }) => {
     return(
         <div className="flex justify-center my-10">
             <div className="border-1 p-4 rounded-lg shadow-md w-[600px] w-[90%] max-w-[600px] bg-white">
@@ -19,9 +19,9 @@ const Post: React.FC<PostProps> = ({ username, profilePicture, image, caption, t
                     
                 </div>
                 <div className="body">
-                    {image ? (
+                    {imageId ? (
                         <>
-                            <img className="w-full mt-[16px] mr-[12px]" src={image} alt="Content" />
+                            <img className="w-full mt-[16px] mr-[12px]" src={`${import.meta.env.VITE_SERVER_URL}/posts/image/${imageId}`} alt="Content" />
                             <h3 className="my-[8px] text-sm font-semibold">{title}</h3>
                             <p className="text-xs text-[#555]">{caption}</p>
                             <p className="text-xs text-[#888]">{date.split('T')[0]}</p>

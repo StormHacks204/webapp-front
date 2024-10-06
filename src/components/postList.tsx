@@ -33,7 +33,7 @@ import { useAuth } from "@clerk/clerk-react";
 type PostProps = {
     username: string;
     profilePicture: string;
-    image: any;
+    imageId: string;
     text: string;
     title: string;
     date: string;
@@ -112,7 +112,7 @@ const PostList = ({latitude, longitude}:{
                     key={index}
                     username={post.username}
                     profilePicture={post.profilePicture}
-                    image={post.image}
+                    imageId={post.imageId}
                     caption={post.text}
                     title={post.title}
                     date={post.date}
