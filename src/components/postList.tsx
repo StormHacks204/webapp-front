@@ -108,7 +108,7 @@ const PostList = ({latitude, longitude}:{
 
         };
         fetchPosts();
-    }, []);
+    }, [getToken, latitude, longitude]);
 
     if (loading) {
         return <p>Loading...</p>;
