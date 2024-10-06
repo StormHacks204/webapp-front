@@ -2,12 +2,13 @@ import { UserButton, useUser } from '@clerk/clerk-react'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useClerk } from "@clerk/clerk-react";
+import { useEffect } from 'react';
 
 const navigation = [
   { name: 'Dashboard', href: '/', current: true },
   { name: 'Create Post', href: '/createpost', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  // { name: 'Projects', href: '#', current: false },
+  // { name: 'Calendar', href: '#', current: false },
 ]
 
 function classNames(...classes: string[]) {
@@ -15,11 +16,19 @@ function classNames(...classes: string[]) {
 }
 
 
-export default function NavigationBar() {
+const NavigationBar = ({activeRoute}:{
+  activeRoute: string
+}) => {
     const { isSignedIn } = useUser();
     
     const { signOut, redirectToSignIn, redirectToSignUp } = useClerk();
     
+    useEffect(() => {
+        navigation.forEach(navItem => {
+          navItem.current = navItem.href === activeRoute;
+        });
+    }, [activeRoute]);
+
     const handleLogout = () => {
         signOut();  // This will log the user out
     };
@@ -59,6 +68,11 @@ export default function NavigationBar() {
                     key={item.name}
                     href={item.href}
                     aria-current={item.current ? 'page' : undefined}
+                    onClick={() => { 
+                      navigation.forEach(navItem => {
+                        navItem.current = navItem.name === item.name;
+                      });
+                    }}
                     className={classNames(
                       item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                       'rounded-md px-3 py-2 text-sm font-medium',
@@ -156,3 +170,5 @@ export default function NavigationBar() {
     </Disclosure>
   )
 }
+
+export default NavigationBar;

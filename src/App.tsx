@@ -6,15 +6,15 @@ import Home from "./pages/Home";
 export default function App() {
   return (
     <>
+    <div className="bg-black">
       <BrowserRouter>
-      <NavigationBar/>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/createpost" element={<CreatePost />} />
-          
-          </Routes>
+      <NavigationBar activeRoute={window.location.pathname} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/createpost" element={<CreatePost />} />
+      </Routes>
       </BrowserRouter>
-
+      </div>
       <header>
       {/* <SignedOut>
         <SignInButton />
