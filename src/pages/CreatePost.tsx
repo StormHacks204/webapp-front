@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from "@clerk/clerk-react";
+import { useNavigate } from 'react-router-dom';
 
 interface PostData {
   title: string;
@@ -8,6 +9,7 @@ interface PostData {
 }
 
 const CreatePost: React.FC = () => {
+  const navigate = useNavigate();
   const [post, setPost] = useState<PostData>({ title: '', text: '', image: null });
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [location, setLocation] = useState({ latitude: 0 , longitude: 0});
@@ -94,6 +96,7 @@ const CreatePost: React.FC = () => {
       window.alert("Failed to create post");
       console.error("Failed to create post");
     }
+    navigate("/");
   };
 
   return (
