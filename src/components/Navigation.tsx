@@ -3,7 +3,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuItem, MenuItem
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useClerk } from "@clerk/clerk-react";
 import { useEffect } from 'react';
-import image from '../../public/echo_logo.png';
+import image from '../assets/echo_logo.png';
 
 const navigation = [
   { name: 'Dashboard', href: '/', current: true },
