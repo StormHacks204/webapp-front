@@ -3,6 +3,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuItem, MenuItem
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useClerk } from "@clerk/clerk-react";
 import { useEffect } from 'react';
+import image from '../../public/echo_logo.png';
 
 const navigation = [
   { name: 'Dashboard', href: '/', current: true },
@@ -57,7 +58,7 @@ const NavigationBar = ({activeRoute}:{
             <div className="flex flex-shrink-0 items-center">
               <img
                 alt="Your Company"
-                src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
+                src={image}
                 className="h-8 w-auto"
               />
             </div>
