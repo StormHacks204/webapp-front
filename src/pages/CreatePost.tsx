@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAuth } from "@clerk/clerk-react";
 
 interface PostData {
   title: string;
@@ -9,6 +10,8 @@ interface PostData {
 const CreatePost: React.FC = () => {
   const [post, setPost] = useState<PostData>({ title: '', text: '', image: null });
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+  const {getToken} = useAuth();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -34,14 +37,21 @@ const CreatePost: React.FC = () => {
     const formData = new FormData();
     formData.append('title', post.title);
     formData.append('text', post.text);
+    formData.append('date', new Date().toISOString());
+    formData.append('coordinates', JSON.stringify([23, 78])); // TODO: remove this hardcode
+
     
     if (post.image) {
       formData.append('image', post.image);
     }
 
-    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}`, {
+    const token = await getToken();
+    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/posts`, {
       method: "POST",
       body: formData,
+      headers: {
+        Authorization: `${token}`
+      }
     })
   };
 
