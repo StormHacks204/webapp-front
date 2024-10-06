@@ -96,7 +96,7 @@ const PostList = ({latitude, longitude}:{
 
         };
         fetchPosts();
-    }, [latitude, longitude, getToken]);
+    }, []);
 
     if (loading) {
         return <p>Loading...</p>;
@@ -118,6 +118,22 @@ const PostList = ({latitude, longitude}:{
                     date={post.date}
                 /> 
             ))}
+
+            <button onClick={async () => {
+                const token = await getToken();
+                const x = latitude;
+                const y = longitude;
+                const response = await fetch(`http://localhost:5001/posts?x=${x}&y=${y}`, {
+
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                const data = await response.json();
+                setPosts(posts.concat(data));
+            }}>
+                Load More
+            </button>
         </div>
     );
 };
