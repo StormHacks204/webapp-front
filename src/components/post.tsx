@@ -5,14 +5,13 @@ import { useEffect } from "react";
 
 type PostProps = {
     username: string;
-    profilePicture: string;
     imageId: string;
     caption: string;
     title: string;
     date: string;
 };
 
-const Post: React.FC<PostProps> = ({ username, profilePicture, imageId, caption, title, date }) => {
+const Post: React.FC<PostProps> = ({ username, imageId, caption, title, date }) => {
     const {getToken} = useAuth();
 
     const [image, setImage] = React.useState<File | null>(null);
@@ -43,9 +42,9 @@ const Post: React.FC<PostProps> = ({ username, profilePicture, imageId, caption,
     return(
         <div className="flex justify-center my-10">
             <div className="border-1 p-4 rounded-lg shadow-md sm:w-[600px] w-[90%] max-w-[600px] bg-white">
-                <div className="flex items-center mb-[12px]">
+                <div className="flex items-center mb-[12px] text-black">
                     {/* <img className="w-[50px] h-[50px] rounded-full mr-[12px]" src={profilePicture} alt="Profile Picture" /> */}
-                    <span>{username}</span>
+                    <span className="font-bold">User: {username}</span>
                     
                 </div>
                 <div className="body">
