@@ -72,7 +72,7 @@ const CreatePost: React.FC = () => {
     formData.append('title', post.title);
     formData.append('text', post.text);
     formData.append('date', new Date().toISOString());
-    formData.append('coordinates', JSON.stringify([23, 78])); // TODO: remove this hardcode
+    formData.append('coordinates', JSON.stringify([location.latitude, location.longitude]));
 
     
     if (post.image) {
