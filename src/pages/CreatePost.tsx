@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from "@clerk/clerk-react";
 
 interface PostData {
@@ -10,8 +10,42 @@ interface PostData {
 const CreatePost: React.FC = () => {
   const [post, setPost] = useState<PostData>({ title: '', text: '', image: null });
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [location, setLocation] = useState({ latitude: 0 , longitude: 0});
+  const [error, setError] = useState("Error");
 
   const {getToken} = useAuth();
+
+  useEffect(() => {
+    const getLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            setLocation({ latitude, longitude });
+          },
+          (error) => {
+            switch (error.code) {
+              case error.PERMISSION_DENIED:
+                setError("User denied the request for Geolocation.");
+                break;
+              case error.POSITION_UNAVAILABLE:
+                setError("Location information is unavailable.");
+                break;
+              case error.TIMEOUT:
+                setError("The request to get user location timed out.");
+                break;
+              default:
+                setError("An error occurred.");
+            }
+          }
+        );
+      } else {
+        setError("Geolocation is not supported by this browser.");
+      }
+    };
+    getLocation()
+
+  }, [])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;

@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import PostList from "../components/postList";
 
 const Home = () => {
-    const [location, setLocation] = useState({ latitude: 0 , longitude: 0}
-    );
+  const [location, setLocation] = useState({ latitude: 0 , longitude: 0});
   const [error, setError] = useState("Error");
 
   useEffect(() => {
