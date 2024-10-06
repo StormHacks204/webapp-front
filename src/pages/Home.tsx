@@ -42,20 +42,7 @@ const Home = () => {
   
 
   return (
-    <div>
-      <div>
-        <h1>Get User Location</h1>
-
-        {location.latitude && location.longitude ? (
-          <div>
-            <p>Latitude: {location.latitude}</p>
-            <p>Longitude: {location.longitude}</p>
-            {/* <PostList latitude={location.latitude} longitude={location.longitude}/> */}
-          </div>
-        ) : (
-          <p>{error || "Click the button to get the location."}</p>
-        )}
-      </div>
+    <div className="bg-[#000000]">
       <div className="feed">
         <h1>Posts are here</h1>
         <PostList latitude={location.latitude} longitude={location.longitude}/>

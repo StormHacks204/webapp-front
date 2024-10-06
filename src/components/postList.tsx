@@ -3,29 +3,36 @@ import { useState, useEffect } from "react";
 import Post from "./post";
 import { useAuth } from "@clerk/clerk-react";
 
-// const exampleData = [
-//     {
-//         username: "username",
-//         profilePicture: "https://via.placeholder.com/150",
-//         image: "https://via.placeholder.com/150",
-//         caption: "caption1",
-//         title: "title1",
-//     },
-//     {
-//         username: "johndoe",
-//         profilePicture: "https://static.vecteezy.com/system/resources/previews/009/273/280/non_2x/concept-of-loneliness-and-disappointment-in-love-sad-man-sitting-element-of-the-picture-is-decorated-by-nasa-free-photo.jpg",
-//         image: "https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg",
-//         caption: "caption2",
-//         title: "title2",
-//     }
-// ];
+const exampleData = [
+    {
+        username: "test",
+        profilePicture: "https://via.placeholder.com/150",
+        image: null,
+        caption: "random caption",
+        title: "Random Title",
+    },
+    {
+        username: "username",
+        profilePicture: "https://via.placeholder.com/150",
+        image: "https://via.placeholder.com/150",
+        caption: "caption1",
+        title: "title1",
+    },
+    {
+        username: "johndoe",
+        profilePicture: "https://static.vecteezy.com/system/resources/previews/009/273/280/non_2x/concept-of-loneliness-and-disappointment-in-love-sad-man-sitting-element-of-the-picture-is-decorated-by-nasa-free-photo.jpg",
+        image: "https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg",
+        caption: "caption2",
+        title: "title2",
+    }
+];
 // fetch function
 
 
 type PostProps = {
     username: string;
     profilePicture: string;
-    image: string;
+    image: any;
     caption: string;
     title: string;
 };
@@ -75,6 +82,7 @@ const PostList = ({latitude, longitude}:{
                 const response = await fetch(`http://localhost:5001/posts?x=${x}&y=${y}`, {headers: {
                                     Authorization: `${token}`}});
                 const data = await response.json();
+                // const data = exampleData;
                 console.log(data);
                 setPosts(data);
             } catch (error: any) {
@@ -95,7 +103,7 @@ const PostList = ({latitude, longitude}:{
     }
 
     return (
-        <div className="postList">
+        <div className="postList py-4">
             {posts && posts.map((post, index) => (
                 <Post
                     key={index}

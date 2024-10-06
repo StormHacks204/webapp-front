@@ -51,7 +51,7 @@ const CreatePost: React.FC = () => {
       <form onSubmit={handleSubmit} className="space-y-6">
         
         <div>
-          <label htmlFor="title" className="block text-white font-medium mb-2">Title</label>
+          <label htmlFor="title" className="block text-gray-700 font-medium mb-2">Title</label>
           <input
             type="text"
             id="title"
