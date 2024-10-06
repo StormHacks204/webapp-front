@@ -48,6 +48,8 @@ const PostList = ({latitude, longitude}:{
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | undefined>(undefined);
 
+    let page = 1;
+
     // const fetchPostsData = async () => {
     //     const token = await getToken()
 
@@ -82,7 +84,7 @@ const PostList = ({latitude, longitude}:{
                 const x = latitude;
                 const y = longitude; 
                 console.log(x, y);
-                const response = await fetch(`http://localhost:5001/posts?x=${x}&y=${y}`, {headers: {
+                const response = await fetch(`http://localhost:5001/posts?x=${x}&y=${y}&page=${page}`, {headers: {
                                     Authorization: `${token}`}});
                 const data = await response.json();
                 console.log(data);
@@ -129,7 +131,8 @@ const PostList = ({latitude, longitude}:{
                 const token = await getToken();
                 const x = latitude;
                 const y = longitude;
-                const response = await fetch(`http://localhost:5001/posts?x=${x}&y=${y}`, {
+                page++;
+                const response = await fetch(`http://localhost:5001/posts?x=${x}&y=${y}&page=${page}`, {
 
                     headers: {
                         Authorization: `Bearer ${token}`
