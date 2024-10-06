@@ -4,11 +4,6 @@ import CreatePost from "./pages/CreatePost";
 import Home from "./pages/Home";
 
 export default function App() {
-  
-
-  // if (!isLoaded || !isSignedIn) {
-  //   return <div>Please log in</div>;
-  // }
   return (
     <>
       <BrowserRouter>

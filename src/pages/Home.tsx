@@ -56,7 +56,7 @@ const Home = () => {
         )}
       </div>
       <div className="feed">
-        <h1>Posts</h1>
+        <h1>Posts are here</h1>
         <PostList />
       </div>
     </div>
