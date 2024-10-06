@@ -47,6 +47,7 @@ const PostList = ({latitude, longitude}:{
     const [posts, setPosts] = useState<PostProps[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | undefined>(undefined);
+    const [noPosts, setNoPosts] = useState(false);
 
     // const fetchPostsData = async () => {
     //     const token = await getToken()
@@ -85,7 +86,18 @@ const PostList = ({latitude, longitude}:{
                 const response = await fetch(`http://localhost:5001/posts?x=${x}&y=${y}`, {headers: {
                                     Authorization: `${token}`}});
                 const data = await response.json();
-                // const data = exampleData;
+                if(response.status === 404){
+                    window.alert("No Posts Found");
+                    throw new Error("404 Not Found");
+                }
+                if(response.status === 500){
+                    window.alert("Something went wrong");
+                    throw new Error("500 Internal Server Error");
+                }
+                if(data.length === 0){
+                    setNoPosts(true);
+                    throw new Error("No Posts Found");
+                }
                 console.log(data);
                 setPosts(data);
             } catch (error: any) {
@@ -118,6 +130,17 @@ const PostList = ({latitude, longitude}:{
                     date={post.date}
                 /> 
             ))}
+
+            { noPosts ? 
+             <div className="flex justify-center my-10">
+             <div className="border-1 p-4 rounded-lg shadow-md sm:w-[600px] w-[90%] max-w-[600px] bg-white">
+
+                 <div className="body">
+                    <h3 className="my-[8px] text-sm font-semibold">No Posts Found</h3>
+                   </div>
+             </div>
+         </div>
+          : null }
 
             <button onClick={async () => {
                 const token = await getToken();

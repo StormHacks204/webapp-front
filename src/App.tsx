@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 export default function App() {
   return (
     <>
-    <div className="bg-black">
+    <div className="bg-black min-h-screen">
       <BrowserRouter>
       <NavigationBar activeRoute={window.location.pathname} />
       <Routes>
