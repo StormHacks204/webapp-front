@@ -120,8 +120,12 @@ const PostList = ({latitude, longitude}:{
                 /> 
             ))}
 
+            <br />
+            <br />
+            <br />
 
-            <button onClick={async () => {
+        <div className="w-full flex">
+        <button className="bg-white mx-auto rounded py-2 px-4" onClick={async () => {
                 const token = await getToken();
                 const x = latitude;
                 const y = longitude;
@@ -136,6 +140,7 @@ const PostList = ({latitude, longitude}:{
             }}>
                 Load More
             </button>
+        </div>
         </div>
     );
 };
