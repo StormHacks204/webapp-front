@@ -86,7 +86,9 @@ const PostList = ({latitude, longitude}:{
                                     Authorization: `${token}`}});
                 const data = await response.json();
                 console.log(data);
-                setPosts(data);
+                if(data.length != 0) {
+                    setPosts(data);
+                }
             } catch (error: any) {
                 setError(error.message);
             } finally {
